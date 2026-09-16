@@ -1,3 +1,5 @@
+<h3 align="center">Made in Tuwaiq Academy with ❤️</h3>
+
 <p align="center">
   <br />
   <h1 align="center">🌱 Rifq (رِفق)</h1>
@@ -180,22 +182,6 @@ flutter run
 
 ---
 
-## 🧪 Testing
-
-Run automated widget and unit tests with:
-
-```bash
-flutter test
-```
-
-To run a specific test suite:
-
-```bash
-flutter test test/tasks_dialog_test.dart
-```
-
----
-
 ## 🔄 CI/CD Workflows
 
 The repository uses **GitHub Actions** for continuous integration and release delivery:
@@ -237,5 +223,3 @@ Contributions, feedback, and suggestions are welcome!
 5. Open a Pull Request.
 
 ---
-
-<h1 align="center">Made in Tuwaiq Academy with ❤️</h1>
