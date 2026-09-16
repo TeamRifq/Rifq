@@ -1,4 +1,4 @@
-package com.example.refactored_pancake
+package com.example.rifq
 
 import io.flutter.embedding.android.FlutterActivity
 
