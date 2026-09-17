@@ -11,7 +11,6 @@ import 'package:rifq/theme/app_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-
   await dotenv.load(fileName: '.env');
 
   await Supabase.initialize(
