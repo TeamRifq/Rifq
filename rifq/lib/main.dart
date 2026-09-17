@@ -42,7 +42,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Rifq',
+      title: 'رِفق',
       theme: AppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
       home: Scaffold(

@@ -4,6 +4,23 @@ import 'package:rifq/theme/app_colors.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  static const List<String> _monthAbbreviations = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  ];
+
+  String _greeting() {
+    final hour = DateTime.now().hour;
+    if (hour < 12) return 'Good Morning';
+    if (hour < 17) return 'Good Afternoon';
+    return 'Good Evening';
+  }
+
+  String _formattedToday() {
+    final now = DateTime.now();
+    return 'Today, ${_monthAbbreviations[now.month - 1]} ${now.day}';
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -14,9 +31,9 @@ class HomeScreen extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Good Morning, Sarah 👋'),
+            Text('${_greeting()}, Sarah 👋'),
             Text(
-              'Family Caregiver • Today, Sep 16',
+              'Family Caregiver • ${_formattedToday()}',
               style: theme.textTheme.labelMedium?.copyWith(
                 color: colorScheme.onSurfaceVariant,
               ),
@@ -189,7 +206,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        'Robert Johnson',
+                        'Abdullah',
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w700,
                           color: colorScheme.onSurface,
@@ -244,7 +261,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Mike Johnson (Son)',
+                          'Mohammed (Son)',
                           style: theme.textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
                             color: colorScheme.onSurface,
@@ -263,7 +280,7 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      'Until 7:00 PM',
+                      'Until 10:00 PM',
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: AppColors.onPrimaryContainer,
                         fontWeight: FontWeight.w600,
@@ -492,7 +509,7 @@ class HomeScreen extends StatelessWidget {
       ),
       _Activity(
         title: 'Afternoon Walk',
-        subtitle: '20-minute gentle walk around the garden with Mike',
+        subtitle: '20-minute gentle walk around the garden with Mohammed',
         time: '3:00 PM',
         icon: Icons.directions_walk_rounded,
         categoryColor: AppColors.categoryExercise,

@@ -101,7 +101,7 @@ class _AddVisitScreenState extends State<AddVisitScreen> {
         month: _monthController.text.trim().toUpperCase(),
         time: _timeController.text.trim(),
         isHandled: false,
-        markedByName: 'John',
+        markedByName: 'Sarah',
       );
       widget.visitService.addVisit(visit);
       Navigator.of(context).pop(true);
@@ -142,7 +142,7 @@ class _AddVisitScreenState extends State<AddVisitScreen> {
             controller: _doctorNameController,
             decoration: InputDecoration(
               labelText: 'Doctor Name',
-              hintText: 'e.g. Dr. Sarah Smith',
+              hintText: 'e.g. Dr. Sarah',
               prefixIcon: const Icon(Icons.person_outline_rounded),
               filled: true,
               fillColor: colorScheme.surfaceContainerLow,

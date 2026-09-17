@@ -33,16 +33,16 @@ class ShiftSwapDialog extends StatefulWidget {
       builder: (context) => ShiftSwapDialog(
         userShifts: userShifts ??
             const [
-              'Morning Shift • Today (07:00 AM – 01:00 PM)',
-              'Afternoon Shift • Tomorrow (01:00 PM – 07:00 PM)',
-              'Night Shift • Thursday (07:00 PM – 07:00 AM)',
+              'Morning Shift • Today (07:00 AM – 04:00 PM)',
+              'Afternoon Shift • Tomorrow (04:00 PM – 10:00 PM)',
+              'Night Shift • Thursday (10:00 PM – 07:00 AM)',
             ],
         availableRelatives: availableRelatives ??
             const [
               'Anyone (Notify all family members)',
-              'Mike Johnson (Son)',
-              'Layla Johnson (Granddaughter)',
-              'Ahmed Johnson (Brother)',
+              'Mohammed (Son)',
+              'Layla (Granddaughter)',
+              'Ahmed (Brother)',
             ],
       ),
     );

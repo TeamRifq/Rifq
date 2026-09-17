@@ -35,9 +35,9 @@ class _AssistantScreenState extends State<AssistantScreen> {
 
   static const List<String> _suggestedPrompts = [
     'What pills are scheduled today?',
-    'Has Robert taken his Metformin?',
+    'Has Abdullah taken his Metformin?',
     'When is the next doctor appointment?',
-    'Who is taking care of Robert today?',
+    'Who is taking care of Abdullah today?',
   ];
 
   @override
@@ -45,7 +45,7 @@ class _AssistantScreenState extends State<AssistantScreen> {
     super.initState();
     _messages.add(
       ChatMessage(
-        text: "Hello! I'm Sanad (سند), your family health assistant. I have access to Robert's prescribed medications and doctor visits. How can I assist your caregiving today?",
+        text: "Hello! I'm Sanad, your family health assistant. I have access to Abdullah's prescribed medications and doctor visits. How can I assist your caregiving today?",
         isUser: false,
       ),
     );

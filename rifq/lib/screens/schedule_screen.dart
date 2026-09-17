@@ -98,40 +98,40 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     return [
       CareShiftModel(
         id: 'shift-morning-${date.day}',
-        caregiverName: 'Sarah Johnson',
+        caregiverName: 'Sarah',
         caregiverRole: 'Daughter',
         shiftTitle: 'Morning Shift',
         startTime: '07:00 AM',
-        endTime: '01:00 PM',
-        duration: '6 hrs',
+        endTime: '04:00 PM',
+        duration: '9 hrs',
         dutiesSummary:
             'Breakfast, morning Lisinopril medication, blood pressure check & physical walk',
-        status: isToday ? ShiftStatus.active : ShiftStatus.upcoming,
+        status: isToday ? ShiftStatus.completed : ShiftStatus.upcoming,
         avatarInitials: 'SJ',
         phoneNumber: '+1-555-0142',
       ),
       CareShiftModel(
         id: 'shift-afternoon-${date.day}',
-        caregiverName: 'Mike Johnson',
+        caregiverName: 'Mohammed',
         caregiverRole: 'Son',
         shiftTitle: 'Afternoon Shift',
-        startTime: '01:00 PM',
-        endTime: '07:00 PM',
+        startTime: '04:00 PM',
+        endTime: '10:00 PM',
         duration: '6 hrs',
         dutiesSummary:
             'Lunch, doctor appointment visit, blood sugar reading & garden relaxation',
-        status: ShiftStatus.upcoming,
+        status: isToday ? ShiftStatus.active : ShiftStatus.upcoming,
         avatarInitials: 'MJ',
         phoneNumber: '+1-555-0189',
       ),
       CareShiftModel(
         id: 'shift-night-${date.day}',
-        caregiverName: 'Layla Johnson',
+        caregiverName: 'Layla',
         caregiverRole: 'Granddaughter',
         shiftTitle: 'Night Shift',
-        startTime: '07:00 PM',
+        startTime: '10:00 PM',
         endTime: '07:00 AM',
-        duration: '12 hrs',
+        duration: '9 hrs',
         dutiesSummary:
             'Dinner, evening Atorvastatin medication, night routine & sleep monitoring',
         status: ShiftStatus.upcoming,
@@ -185,7 +185,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           children: [
             const Text('Care Schedule'),
             Text(
-              'Robert Johnson • Family Coverage',
+              'Abdullah • Family Coverage',
               style: theme.textTheme.labelMedium?.copyWith(
                 color: colorScheme.onSurfaceVariant,
               ),
