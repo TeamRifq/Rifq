@@ -190,7 +190,6 @@ class _AddPillScreenState extends State<AddPillScreen> {
             },
           ),
           const SizedBox(height: 10),
-          // Quick time presets
           Wrap(
             spacing: 8,
             children: ['08:00 AM', '12:00 PM', '06:00 PM', '09:00 PM'].map((preset) {

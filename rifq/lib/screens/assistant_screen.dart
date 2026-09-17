@@ -217,7 +217,6 @@ If the user asks about anything outside of this context or what you know, state 
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               itemCount: _messages.length + (_isLoading ? 1 : 0) + (showSuggestions ? 1 : 0),
               itemBuilder: (context, index) {
-                // Render Suggested Prompts
                 if (showSuggestions && index == 1) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12),
@@ -267,7 +266,6 @@ If the user asks about anything outside of this context or what you know, state 
 
                 final actualIndex = (showSuggestions && index > 1) ? index - 1 : index;
 
-                // Render Loading Indicator
                 if (_isLoading && actualIndex == _messages.length) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 6),
@@ -382,7 +380,6 @@ If the user asks about anything outside of this context or what you know, state 
             ),
           ),
 
-          // Bottom Input Bar
           SafeArea(
             child: Container(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),

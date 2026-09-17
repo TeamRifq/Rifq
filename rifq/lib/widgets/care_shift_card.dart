@@ -58,10 +58,8 @@ class CareShiftCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Top Row: Caregiver Avatar, Name/Role, Status Badge
             Row(
               children: [
-                // Caregiver Initials Avatar
                 Container(
                   width: 48,
                   height: 48,
@@ -84,7 +82,6 @@ class CareShiftCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 14),
 
-                // Name and Role
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,14 +119,12 @@ class CareShiftCard extends StatelessWidget {
                   ),
                 ),
 
-                // Status Badge
                 _buildStatusBadge(context, shift.status),
               ],
             ),
 
             const SizedBox(height: 14),
 
-            // Middle Box: Shift Details Banner
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
               decoration: BoxDecoration(
@@ -208,7 +203,6 @@ class CareShiftCard extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            // Duties / Responsibilities Row
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rifq/theme/app_colors.dart';
 
-/// Central theme configuration for Rifq, strictly adhering to Material Design 3.
 class AppTheme {
   AppTheme._();
 

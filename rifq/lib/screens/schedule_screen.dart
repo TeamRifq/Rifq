@@ -55,7 +55,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     super.initState();
     final now = DateTime.now();
     _selectedDate = DateTime(now.year, now.month, now.day);
-    // Start week on Monday of current selected week
     _weekStartDate = _selectedDate.subtract(Duration(days: _selectedDate.weekday - 1));
   }
 
@@ -218,12 +217,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // 1. Weekly Calendar Strip
                   _buildCalendarSection(context),
 
                   const SizedBox(height: 20),
-
-                  // 2. Day Header & Coverage Status
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -304,7 +300,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
                   const SizedBox(height: 14),
 
-                  // 3. Shift Cards
                   ...shifts.map((shift) {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12),
@@ -328,7 +323,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
             ),
           ),
 
-          // 4. Request Shift Swap Sticky Bottom Bar
           SafeArea(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -383,7 +377,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
         child: Column(
           children: [
-            // Calendar Header: Month/Year navigation
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -440,7 +433,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
             const SizedBox(height: 12),
 
-            // Horizontal Days Strip (Monday to Sunday)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: List.generate(7, (index) {
@@ -494,7 +486,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                           ),
                         ),
                         const SizedBox(height: 6),
-                        // Indicator dot showing care shift coverage
                         Container(
                           width: 5,
                           height: 5,

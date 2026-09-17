@@ -127,7 +127,6 @@ class _ShiftSwapDialogState extends State<ShiftSwapDialog> {
           children: [
             const SizedBox(height: 8),
 
-            // Select Shift
             Text(
               'Your Shift to Swap',
               style: theme.textTheme.labelMedium?.copyWith(
@@ -168,7 +167,6 @@ class _ShiftSwapDialogState extends State<ShiftSwapDialog> {
 
             const SizedBox(height: 16),
 
-            // Select Target Caregiver
             Text(
               'Request Coverage From',
               style: theme.textTheme.labelMedium?.copyWith(
@@ -209,7 +207,6 @@ class _ShiftSwapDialogState extends State<ShiftSwapDialog> {
 
             const SizedBox(height: 16),
 
-            // Reason / Note
             Text(
               'Reason / Note (Optional)',
               style: theme.textTheme.labelMedium?.copyWith(

@@ -26,22 +26,18 @@ class HomeScreen extends StatelessWidget {
       ),
       body: CustomScrollView(
         slivers: [
-          // Main Body Content
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                // 1. Care Circle Hero Card
                 _buildCareCircleCard(context),
 
                 const SizedBox(height: 16),
 
-                // 2. Quick Vitals & Medication Pulse Summary
                 _buildQuickMetricsRow(context),
 
                 const SizedBox(height: 24),
 
-                // 3. Section Title: Activity Feed
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -85,7 +81,6 @@ class HomeScreen extends StatelessWidget {
 
                 const SizedBox(height: 12),
 
-                // 4. Categorized Activity Items
                 ..._buildActivityItems(context),
               ]),
             ),
@@ -122,7 +117,6 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(18),
         child: Column(
           children: [
-            // Top Row: Patient Info
             Row(
               children: [
                 Stack(
@@ -219,7 +213,6 @@ class HomeScreen extends StatelessWidget {
             const Divider(),
             const SizedBox(height: 12),
 
-            // Active Caregiver Bar
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
               decoration: BoxDecoration(
@@ -292,7 +285,6 @@ class HomeScreen extends StatelessWidget {
 
     return Row(
       children: [
-        // Metric 1: Medication Progress
         Expanded(
           child: Card(
             shape: RoundedRectangleBorder(
@@ -367,7 +359,6 @@ class HomeScreen extends StatelessWidget {
 
         const SizedBox(width: 12),
 
-        // Metric 2: Today's Vitals Check
         Expanded(
           child: Card(
             shape: RoundedRectangleBorder(
@@ -540,7 +531,6 @@ class HomeScreen extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Category Icon with colored background
                 Container(
                   width: 44,
                   height: 44,
@@ -557,7 +547,6 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(width: 14),
 
-                // Content
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

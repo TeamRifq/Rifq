@@ -52,7 +52,6 @@ class VisitWidget extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Date Tear-off Badge
                 Container(
                   width: 52,
                   decoration: BoxDecoration(
@@ -110,7 +109,6 @@ class VisitWidget extends StatelessWidget {
 
                 const SizedBox(width: 14),
 
-                // Visit Details
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,8 +186,6 @@ class VisitWidget extends StatelessWidget {
             ),
 
             const SizedBox(height: 12),
-
-            // Handled Confirmation or Mark Handled CTA
             if (isHandled)
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),

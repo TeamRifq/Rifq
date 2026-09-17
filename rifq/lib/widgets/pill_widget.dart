@@ -50,7 +50,6 @@ class PillWidget extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Icon Badge
                 Container(
                   width: 50,
                   height: 50,
@@ -72,7 +71,6 @@ class PillWidget extends StatelessWidget {
 
                 const SizedBox(width: 14),
 
-                // Pill Information
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,7 +169,6 @@ class PillWidget extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            // Bottom Action / Confirmation State
             if (isTaken)
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),

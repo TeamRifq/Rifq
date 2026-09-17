@@ -93,7 +93,6 @@ class _TasksScreenState extends State<TasksScreen> {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 80),
         children: [
-          // 1. Daily Completion Progress Hero Card
           Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
@@ -189,7 +188,6 @@ class _TasksScreenState extends State<TasksScreen> {
 
           const SizedBox(height: 16),
 
-          // 2. Segmented Filter Controls
           SizedBox(
             width: double.infinity,
             child: SegmentedButton<String>(
@@ -221,7 +219,6 @@ class _TasksScreenState extends State<TasksScreen> {
 
           const SizedBox(height: 16),
 
-          // 3. Filtered Tasks List
           if (_selectedFilter == 'all' || _selectedFilter == 'pills') ...[
             if (_selectedFilter == 'all')
               Padding(
