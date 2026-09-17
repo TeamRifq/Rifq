@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rifq/models/pill_model.dart';
 import 'package:rifq/services/pill_service.dart';
+import 'package:rifq/theme/app_colors.dart';
 
 class AddPillScreen extends StatefulWidget {
   final PillService pillService;
@@ -84,6 +85,7 @@ class _AddPillScreenState extends State<AddPillScreen> {
       key: _formKey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
             controller: _pillNameController,
@@ -91,10 +93,11 @@ class _AddPillScreenState extends State<AddPillScreen> {
               labelText: 'Pill Name',
               hintText: 'e.g. Lisinopril',
               prefixIcon: const Icon(Icons.medication_outlined),
-              filled: isDialog,
-              fillColor: isDialog ? colorScheme.surface : null,
+              filled: true,
+              fillColor: colorScheme.surfaceContainerLow,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(14),
+                borderSide: const BorderSide(color: AppColors.outlineVariant),
               ),
             ),
             validator: (value) {
@@ -105,48 +108,60 @@ class _AddPillScreenState extends State<AddPillScreen> {
             },
           ),
           const SizedBox(height: 14),
-          TextFormField(
-            controller: _dosageController,
-            decoration: InputDecoration(
-              labelText: 'Dosage',
-              hintText: 'e.g. 500mg',
-              prefixIcon: const Icon(Icons.scale_outlined),
-              filled: isDialog,
-              fillColor: isDialog ? colorScheme.surface : null,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+          Row(
+            children: [
+              Expanded(
+                flex: 3,
+                child: TextFormField(
+                  controller: _dosageController,
+                  decoration: InputDecoration(
+                    labelText: 'Dosage',
+                    hintText: 'e.g. 500mg',
+                    prefixIcon: const Icon(Icons.scale_outlined),
+                    filled: true,
+                    fillColor: colorScheme.surfaceContainerLow,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(14),
+                      borderSide: const BorderSide(color: AppColors.outlineVariant),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Please enter a dosage';
+                    }
+                    return null;
+                  },
+                ),
               ),
-            ),
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Please enter a dosage';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 14),
-          TextFormField(
-            controller: _tabletsController,
-            decoration: InputDecoration(
-              labelText: 'Number of Tablets',
-              hintText: 'e.g. 2',
-              prefixIcon: const Icon(Icons.pin_outlined),
-              filled: isDialog,
-              fillColor: isDialog ? colorScheme.surface : null,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+              const SizedBox(width: 12),
+              Expanded(
+                flex: 2,
+                child: TextFormField(
+                  controller: _tabletsController,
+                  decoration: InputDecoration(
+                    labelText: 'Number of Tablets',
+                    hintText: 'e.g. 2',
+                    prefixIcon: const Icon(Icons.pin_outlined),
+                    filled: true,
+                    fillColor: colorScheme.surfaceContainerLow,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(14),
+                      borderSide: const BorderSide(color: AppColors.outlineVariant),
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Enter count';
+                    }
+                    if (int.tryParse(value.trim()) == null) {
+                      return 'Valid number';
+                    }
+                    return null;
+                  },
+                ),
               ),
-            ),
-            keyboardType: TextInputType.number,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Please enter the number of tablets';
-              }
-              if (int.tryParse(value.trim()) == null) {
-                return 'Please enter a valid number';
-              }
-              return null;
-            },
+            ],
           ),
           const SizedBox(height: 14),
           TextFormField(
@@ -160,10 +175,11 @@ class _AddPillScreenState extends State<AddPillScreen> {
                 onPressed: _selectTime,
                 tooltip: 'Select time',
               ),
-              filled: isDialog,
-              fillColor: isDialog ? colorScheme.surface : null,
+              filled: true,
+              fillColor: colorScheme.surfaceContainerLow,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(14),
+                borderSide: const BorderSide(color: AppColors.outlineVariant),
               ),
             ),
             validator: (value) {
@@ -172,6 +188,25 @@ class _AddPillScreenState extends State<AddPillScreen> {
               }
               return null;
             },
+          ),
+          const SizedBox(height: 10),
+          // Quick time presets
+          Wrap(
+            spacing: 8,
+            children: ['08:00 AM', '12:00 PM', '06:00 PM', '09:00 PM'].map((preset) {
+              return ActionChip(
+                label: Text(preset, style: const TextStyle(fontSize: 11)),
+                onPressed: () {
+                  setState(() {
+                    _timeController.text = preset;
+                  });
+                },
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                backgroundColor: colorScheme.surfaceContainerHigh,
+                side: BorderSide.none,
+                visualDensity: VisualDensity.compact,
+              );
+            }).toList(),
           ),
         ],
       ),
@@ -186,12 +221,12 @@ class _AddPillScreenState extends State<AddPillScreen> {
     if (widget.isDialog) {
       return Dialog(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(28),
+          borderRadius: BorderRadius.circular(24),
         ),
-        backgroundColor: colorScheme.surfaceContainerHigh,
+        backgroundColor: colorScheme.surfaceContainerLowest,
         clipBehavior: Clip.antiAlias,
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 560),
+          constraints: const BoxConstraints(maxWidth: 520),
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(24),
@@ -205,7 +240,7 @@ class _AddPillScreenState extends State<AddPillScreen> {
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: colorScheme.primaryContainer,
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(14),
                         ),
                         child: Icon(
                           Icons.medication_rounded,
@@ -220,8 +255,8 @@ class _AddPillScreenState extends State<AddPillScreen> {
                           children: [
                             Text(
                               'Add Pill',
-                              style: theme.textTheme.titleLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
+                              style: theme.textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.w700,
                                 color: colorScheme.onSurface,
                               ),
                             ),
@@ -257,6 +292,11 @@ class _AddPillScreenState extends State<AddPillScreen> {
                         onPressed: _addPill,
                         icon: const Icon(Icons.add_rounded, size: 18),
                         label: const Text('Add Pill'),
+                        style: FilledButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -283,6 +323,9 @@ class _AddPillScreenState extends State<AddPillScreen> {
               onPressed: _addPill,
               style: FilledButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
               ),
               icon: const Icon(Icons.add_rounded, size: 20),
               label: const Text('Add Pill'),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rifq/models/care_shift_model.dart';
+import 'package:rifq/theme/app_colors.dart';
 
 class CareShiftCard extends StatelessWidget {
   final CareShiftModel shift;
@@ -28,25 +29,39 @@ class CareShiftCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final isActive = shift.status == ShiftStatus.active;
 
-    return Card.outlined(
+    return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(20),
         side: BorderSide(
           color: isActive
               ? colorScheme.primary
-              : colorScheme.outlineVariant.withValues(alpha: 0.7),
+              : colorScheme.outlineVariant.withValues(alpha: 0.6),
           width: isActive ? 1.8 : 1.0,
         ),
       ),
-      child: Padding(
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          gradient: isActive
+              ? LinearGradient(
+                  colors: [
+                    colorScheme.surfaceContainerLowest,
+                    AppColors.primaryContainer.withValues(alpha: 0.2),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                )
+              : null,
+          color: isActive ? null : colorScheme.surfaceContainerLowest,
+        ),
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Top Row: Caregiver Info & Status Badge
+            // Top Row: Caregiver Avatar, Name/Role, Status Badge
             Row(
               children: [
-                // Caregiver Avatar
+                // Caregiver Initials Avatar
                 Container(
                   width: 48,
                   height: 48,
@@ -54,20 +69,21 @@ class CareShiftCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: isActive
                         ? colorScheme.primaryContainer
-                        : colorScheme.surfaceContainerHighest,
-                    borderRadius: BorderRadius.circular(14),
+                        : colorScheme.surfaceContainerHigh,
+                    borderRadius: BorderRadius.circular(16),
                   ),
                   child: Text(
                     shift.avatarInitials,
                     style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w700,
                       color: isActive
                           ? colorScheme.onPrimaryContainer
-                          : colorScheme.onSurfaceVariant,
+                          : colorScheme.onSurface,
                     ),
                   ),
                 ),
                 const SizedBox(width: 14),
+
                 // Name and Role
                 Expanded(
                   child: Column(
@@ -76,18 +92,36 @@ class CareShiftCard extends StatelessWidget {
                       Text(
                         shift.caregiverName,
                         style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w700,
+                          color: colorScheme.onSurface,
                         ),
                       ),
-                      Text(
-                        shift.caregiverRole,
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: colorScheme.onSurfaceVariant,
-                        ),
+                      const SizedBox(height: 2),
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
+                            decoration: BoxDecoration(
+                              color: colorScheme.surfaceContainerHigh,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              shift.caregiverRole,
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: colorScheme.onSurfaceVariant,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
+
                 // Status Badge
                 _buildStatusBadge(context, shift.status),
               ],
@@ -95,23 +129,37 @@ class CareShiftCard extends StatelessWidget {
 
             const SizedBox(height: 14),
 
-            // Middle Box: Shift Title & Time Frame
+            // Middle Box: Shift Details Banner
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
               decoration: BoxDecoration(
                 color: isActive
-                    ? colorScheme.primaryContainer.withValues(alpha: 0.4)
-                    : colorScheme.surfaceContainerHigh.withValues(alpha: 0.5),
-                borderRadius: BorderRadius.circular(12),
+                    ? AppColors.primaryContainer.withValues(alpha: 0.4)
+                    : colorScheme.surfaceContainerLow,
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(
+                  color: isActive
+                      ? colorScheme.primary.withValues(alpha: 0.2)
+                      : colorScheme.outlineVariant.withValues(alpha: 0.4),
+                ),
               ),
               child: Row(
                 children: [
-                  Icon(
-                    _getShiftIcon(shift.shiftTitle),
-                    size: 20,
-                    color: isActive ? colorScheme.primary : colorScheme.onSurfaceVariant,
+                  Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      color: isActive
+                          ? colorScheme.primary.withValues(alpha: 0.15)
+                          : colorScheme.surfaceContainerHigh,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Icon(
+                      _getShiftIcon(shift.shiftTitle),
+                      size: 18,
+                      color: isActive ? colorScheme.primary : colorScheme.onSurfaceVariant,
+                    ),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,14 +167,14 @@ class CareShiftCard extends StatelessWidget {
                         Text(
                           shift.shiftTitle,
                           style: theme.textTheme.labelMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                             color: isActive
                                 ? colorScheme.primary
                                 : colorScheme.onSurface,
                           ),
                         ),
                         Text(
-                          '${shift.startTime} – ${shift.endTime} (${shift.duration})',
+                          '${shift.startTime} – ${shift.endTime} • ${shift.duration}',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: colorScheme.onSurfaceVariant,
                             fontWeight: FontWeight.w500,
@@ -136,39 +184,57 @@ class CareShiftCard extends StatelessWidget {
                     ),
                   ),
                   if (onContactTap != null)
-                    IconButton(
-                      icon: const Icon(Icons.chat_bubble_outline_rounded, size: 20),
-                      color: colorScheme.primary,
+                    IconButton.filledTonal(
+                      icon: const Icon(Icons.chat_bubble_outline_rounded, size: 18),
                       tooltip: 'Message ${shift.caregiverName}',
                       onPressed: onContactTap,
-                      visualDensity: VisualDensity.compact,
+                      style: IconButton.styleFrom(
+                        backgroundColor: isActive
+                            ? colorScheme.primary
+                            : colorScheme.surfaceContainerHigh,
+                        foregroundColor: isActive
+                            ? colorScheme.onPrimary
+                            : colorScheme.primary,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        visualDensity: VisualDensity.compact,
+                      ),
                     ),
                 ],
               ),
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 12),
 
-            // Duties / Activities Summary
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.task_alt_rounded,
-                  size: 16,
-                  color: colorScheme.outline,
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    shift.dutiesSummary,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
-                      height: 1.3,
+            // Duties / Responsibilities Row
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: colorScheme.surfaceContainerLowest,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.checklist_rounded,
+                    size: 16,
+                    color: colorScheme.primary,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      shift.dutiesSummary,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                        height: 1.35,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
@@ -187,13 +253,13 @@ class CareShiftCard extends StatelessWidget {
 
     switch (status) {
       case ShiftStatus.active:
-        badgeBg = colorScheme.primaryContainer;
-        textColor = colorScheme.onPrimaryContainer;
+        badgeBg = AppColors.primaryContainer;
+        textColor = AppColors.onPrimaryContainer;
         label = 'Active Now';
-        icon = Icons.fiber_manual_record;
+        icon = Icons.fiber_manual_record_rounded;
         break;
       case ShiftStatus.upcoming:
-        badgeBg = colorScheme.surfaceContainerHighest;
+        badgeBg = colorScheme.surfaceContainerHigh;
         textColor = colorScheme.onSurfaceVariant;
         label = 'Upcoming';
         icon = Icons.schedule_rounded;
@@ -220,11 +286,11 @@ class CareShiftCard extends StatelessWidget {
             size: status == ShiftStatus.active ? 8 : 12,
             color: textColor,
           ),
-          const SizedBox(width: 4),
+          const SizedBox(width: 5),
           Text(
             label,
             style: theme.textTheme.labelSmall?.copyWith(
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w700,
               color: textColor,
             ),
           ),

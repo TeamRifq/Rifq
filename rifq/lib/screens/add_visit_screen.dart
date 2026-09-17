@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rifq/models/visit_model.dart';
 import 'package:rifq/services/visit_service.dart';
+import 'package:rifq/theme/app_colors.dart';
 
 class AddVisitScreen extends StatefulWidget {
   final VisitService visitService;
@@ -108,13 +109,13 @@ class _AddVisitScreenState extends State<AddVisitScreen> {
   }
 
   Widget _buildFormFields(BuildContext context, {required bool isDialog}) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Form(
       key: _formKey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
             controller: _visitNameController,
@@ -122,10 +123,11 @@ class _AddVisitScreenState extends State<AddVisitScreen> {
               labelText: 'Visit Name',
               hintText: 'e.g. Annual Checkup',
               prefixIcon: const Icon(Icons.local_hospital_outlined),
-              filled: isDialog,
-              fillColor: isDialog ? colorScheme.surface : null,
+              filled: true,
+              fillColor: colorScheme.surfaceContainerLow,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(14),
+                borderSide: const BorderSide(color: AppColors.outlineVariant),
               ),
             ),
             validator: (value) {
@@ -142,10 +144,11 @@ class _AddVisitScreenState extends State<AddVisitScreen> {
               labelText: 'Doctor Name',
               hintText: 'e.g. Dr. Sarah Smith',
               prefixIcon: const Icon(Icons.person_outline_rounded),
-              filled: isDialog,
-              fillColor: isDialog ? colorScheme.surface : null,
+              filled: true,
+              fillColor: colorScheme.surfaceContainerLow,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(14),
+                borderSide: const BorderSide(color: AppColors.outlineVariant),
               ),
             ),
             validator: (value) {
@@ -165,10 +168,11 @@ class _AddVisitScreenState extends State<AddVisitScreen> {
                     labelText: 'Day',
                     hintText: 'e.g. 22',
                     prefixIcon: const Icon(Icons.calendar_today_outlined),
-                    filled: isDialog,
-                    fillColor: isDialog ? colorScheme.surface : null,
+                    filled: true,
+                    fillColor: colorScheme.surfaceContainerLow,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(14),
+                      borderSide: const BorderSide(color: AppColors.outlineVariant),
                     ),
                   ),
                   keyboardType: TextInputType.number,
@@ -193,10 +197,11 @@ class _AddVisitScreenState extends State<AddVisitScreen> {
                       onPressed: _selectDate,
                       tooltip: 'Pick date',
                     ),
-                    filled: isDialog,
-                    fillColor: isDialog ? colorScheme.surface : null,
+                    filled: true,
+                    fillColor: colorScheme.surfaceContainerLow,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(14),
+                      borderSide: const BorderSide(color: AppColors.outlineVariant),
                     ),
                   ),
                   validator: (value) {
@@ -221,10 +226,11 @@ class _AddVisitScreenState extends State<AddVisitScreen> {
                 onPressed: _selectTime,
                 tooltip: 'Select time',
               ),
-              filled: isDialog,
-              fillColor: isDialog ? colorScheme.surface : null,
+              filled: true,
+              fillColor: colorScheme.surfaceContainerLow,
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(14),
+                borderSide: const BorderSide(color: AppColors.outlineVariant),
               ),
             ),
             validator: (value) {
@@ -247,12 +253,12 @@ class _AddVisitScreenState extends State<AddVisitScreen> {
     if (widget.isDialog) {
       return Dialog(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(28),
+          borderRadius: BorderRadius.circular(24),
         ),
-        backgroundColor: colorScheme.surfaceContainerHigh,
+        backgroundColor: colorScheme.surfaceContainerLowest,
         clipBehavior: Clip.antiAlias,
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 560),
+          constraints: const BoxConstraints(maxWidth: 520),
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(24),
@@ -266,7 +272,7 @@ class _AddVisitScreenState extends State<AddVisitScreen> {
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: colorScheme.primaryContainer,
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(14),
                         ),
                         child: Icon(
                           Icons.calendar_today_rounded,
@@ -281,8 +287,8 @@ class _AddVisitScreenState extends State<AddVisitScreen> {
                           children: [
                             Text(
                               'Add Visit',
-                              style: theme.textTheme.titleLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
+                              style: theme.textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.w700,
                                 color: colorScheme.onSurface,
                               ),
                             ),
@@ -318,6 +324,11 @@ class _AddVisitScreenState extends State<AddVisitScreen> {
                         onPressed: _addVisit,
                         icon: const Icon(Icons.add_rounded, size: 18),
                         label: const Text('Add Visit'),
+                        style: FilledButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -344,6 +355,9 @@ class _AddVisitScreenState extends State<AddVisitScreen> {
               onPressed: _addVisit,
               style: FilledButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
               ),
               icon: const Icon(Icons.add_rounded, size: 20),
               label: const Text('Add Visit'),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rifq/theme/app_colors.dart';
 
 class ShiftSwapRequestData {
   final String myShift;
@@ -78,16 +79,17 @@ class _ShiftSwapDialogState extends State<ShiftSwapDialog> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24),
       ),
+      backgroundColor: colorScheme.surfaceContainerLowest,
       titlePadding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
-      contentPadding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
-      actionsPadding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
+      contentPadding: const EdgeInsets.fromLTRB(24, 16, 24, 20),
+      actionsPadding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
       title: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: colorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(14),
             ),
             child: Icon(
               Icons.swap_horiz_rounded,
@@ -95,7 +97,7 @@ class _ShiftSwapDialogState extends State<ShiftSwapDialog> {
               size: 24,
             ),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,11 +105,12 @@ class _ShiftSwapDialogState extends State<ShiftSwapDialog> {
                 Text(
                   'Request Shift Swap',
                   style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
+                const SizedBox(height: 2),
                 Text(
-                  'Ask relatives to cover your shift',
+                  'Ask family members to cover your shift',
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: colorScheme.onSurfaceVariant,
                   ),
@@ -126,7 +129,7 @@ class _ShiftSwapDialogState extends State<ShiftSwapDialog> {
 
             // Select Shift
             Text(
-              'Your Shift',
+              'Your Shift to Swap',
               style: theme.textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.w600,
                 color: colorScheme.onSurface,
@@ -138,13 +141,12 @@ class _ShiftSwapDialogState extends State<ShiftSwapDialog> {
               initialValue: _selectedShift,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.access_time_rounded, size: 20),
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
                 filled: true,
-                fillColor: colorScheme.surfaceContainerHigh,
+                fillColor: colorScheme.surfaceContainerLow,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(14),
+                  borderSide: const BorderSide(color: AppColors.outlineVariant),
                 ),
               ),
               items: widget.userShifts.map((shift) {
@@ -168,7 +170,7 @@ class _ShiftSwapDialogState extends State<ShiftSwapDialog> {
 
             // Select Target Caregiver
             Text(
-              'Swap With',
+              'Request Coverage From',
               style: theme.textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.w600,
                 color: colorScheme.onSurface,
@@ -180,13 +182,12 @@ class _ShiftSwapDialogState extends State<ShiftSwapDialog> {
               initialValue: _selectedRelative,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.people_alt_outlined, size: 20),
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
                 filled: true,
-                fillColor: colorScheme.surfaceContainerHigh,
+                fillColor: colorScheme.surfaceContainerLow,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(14),
+                  borderSide: const BorderSide(color: AppColors.outlineVariant),
                 ),
               ),
               items: widget.availableRelatives.map((relative) {
@@ -221,17 +222,16 @@ class _ShiftSwapDialogState extends State<ShiftSwapDialog> {
               controller: _reasonController,
               maxLines: 2,
               decoration: InputDecoration(
-                hintText: 'e.g. Doctor appointment, work conflict...',
+                hintText: 'e.g., Work conflict, doctor appointment...',
                 hintStyle: theme.textTheme.bodySmall?.copyWith(
                   color: colorScheme.outline,
                 ),
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                 filled: true,
-                fillColor: colorScheme.surfaceContainerHigh,
+                fillColor: colorScheme.surfaceContainerLow,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(14),
+                  borderSide: const BorderSide(color: AppColors.outlineVariant),
                 ),
               ),
             ),
@@ -246,6 +246,9 @@ class _ShiftSwapDialogState extends State<ShiftSwapDialog> {
         FilledButton.icon(
           icon: const Icon(Icons.send_rounded, size: 16),
           label: const Text('Send Request'),
+          style: FilledButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          ),
           onPressed: () {
             Navigator.of(context).pop(
               ShiftSwapRequestData(

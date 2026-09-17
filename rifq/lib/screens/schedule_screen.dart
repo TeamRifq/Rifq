@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rifq/models/care_shift_model.dart';
+import 'package:rifq/theme/app_colors.dart';
 import 'package:rifq/widgets/care_shift_card.dart';
 import 'package:rifq/widgets/shift_swap_dialog.dart';
 
@@ -95,7 +96,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     final today = DateTime.now();
     final isToday = _isSameDay(date, today);
 
-    // Three shifts scheduled for each day
     return [
       CareShiftModel(
         id: 'shift-morning-${date.day}',
@@ -147,16 +147,14 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     if (result != null && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           content: Row(
             children: [
-              const Icon(Icons.check_circle, color: Colors.white),
+              const Icon(Icons.check_circle_rounded, color: Colors.white, size: 20),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
                   'Swap request sent to ${result.swapWith}!',
-                  style: const TextStyle(fontWeight: FontWeight.w500),
+                  style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
               ),
             ],
@@ -188,8 +186,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           children: [
             const Text('Care Schedule'),
             Text(
-              'Caring for Robert Johnson',
-              style: theme.textTheme.bodySmall?.copyWith(
+              'Robert Johnson • Family Coverage',
+              style: theme.textTheme.labelMedium?.copyWith(
                 color: colorScheme.onSurfaceVariant,
               ),
             ),
@@ -197,10 +195,18 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
         ),
         actions: [
           if (!isToday)
-            TextButton.icon(
-              onPressed: _jumpToToday,
-              icon: const Icon(Icons.today, size: 18),
-              label: const Text('Today'),
+            Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: FilledButton.tonalIcon(
+                onPressed: _jumpToToday,
+                icon: const Icon(Icons.today_rounded, size: 16),
+                label: const Text('Today'),
+                style: FilledButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  visualDensity: VisualDensity.compact,
+                ),
+              ),
             ),
         ],
       ),
@@ -212,97 +218,125 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // 1. Simple Calendar on the Top
+                  // 1. Weekly Calendar Strip
                   _buildCalendarSection(context),
 
                   const SizedBox(height: 20),
 
-                  // 2. Section Title: Current Day & Shift Overview
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                formattedDayTitle,
-                                style: theme.textTheme.titleLarge?.copyWith(
-                                  fontWeight: FontWeight.bold,
+                  // 2. Day Header & Coverage Status
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  formattedDayTitle,
+                                  style: theme.textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
-                              ),
-                              if (isToday) ...[
-                                const SizedBox(width: 8),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 2,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: colorScheme.primaryContainer,
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: Text(
-                                    'Today',
-                                    style: theme.textTheme.labelSmall?.copyWith(
-                                      color: colorScheme.onPrimaryContainer,
-                                      fontWeight: FontWeight.bold,
+                                if (isToday) ...[
+                                  const SizedBox(width: 8),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                      vertical: 2,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.primaryContainer,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Text(
+                                      'Today',
+                                      style: theme.textTheme.labelSmall?.copyWith(
+                                        color: AppColors.onPrimaryContainer,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                     ),
                                   ),
-                                ),
+                                ],
                               ],
-                            ],
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            '3 Caregivers scheduled • 24h Coverage',
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: colorScheme.onSurfaceVariant,
                             ),
-                          ),
-                        ],
+                            const SizedBox(height: 2),
+                            Text(
+                              '3 Caregivers scheduled • 24h Coverage',
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: colorScheme.onSurfaceVariant,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 14),
-
-                // 3. Three Widgets of People and Their Schedule Timings
-                ...shifts.map((shift) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
-                    child: CareShiftCard(
-                      shift: shift,
-                      onContactTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Contacting ${shift.caregiverName} (${shift.caregiverRole})...',
-                            ),
-                            duration: const Duration(seconds: 2),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryContainer.withValues(alpha: 0.5),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: AppColors.primary.withValues(alpha: 0.3),
                           ),
-                        );
-                      },
-                    ),
-                  );
-                }),
-              ],
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.verified_user_rounded,
+                              size: 14,
+                              color: AppColors.primary,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              'Covered',
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 14),
+
+                  // 3. Shift Cards
+                  ...shifts.map((shift) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: CareShiftCard(
+                        shift: shift,
+                        onContactTap: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Connecting to ${shift.caregiverName} (${shift.caregiverRole})...',
+                              ),
+                              duration: const Duration(seconds: 2),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  }),
+                ],
+              ),
             ),
           ),
-        ),
 
-          // 4. Request Shift Swap Button at the bottom
+          // 4. Request Shift Swap Sticky Bottom Bar
           SafeArea(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
-                color: theme.scaffoldBackgroundColor,
+                color: colorScheme.surfaceContainerLowest,
                 border: Border(
                   top: BorderSide(
-                    color: colorScheme.outlineVariant.withValues(alpha: 0.5),
+                    color: colorScheme.outlineVariant.withValues(alpha: 0.6),
                   ),
                 ),
               ),
@@ -314,7 +348,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   icon: const Icon(Icons.swap_horiz_rounded),
                   label: const Text(
                     'Request Shift Swap',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                   ),
                   style: FilledButton.styleFrom(
                     shape: RoundedRectangleBorder(
@@ -338,12 +372,15 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     final currentMonthYear =
         '${_months[_selectedDate.month - 1]} ${_selectedDate.year}';
 
-    return Card.outlined(
+    return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(22),
+        side: BorderSide(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.6),
+        ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
         child: Column(
           children: [
             // Calendar Header: Month/Year navigation
@@ -352,37 +389,56 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               children: [
                 Row(
                   children: [
-                    const SizedBox(width: 4),
-                    const Icon(Icons.calendar_month, size: 20),
-                    const SizedBox(width: 8),
+                    Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        color: colorScheme.primaryContainer,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Icon(
+                        Icons.calendar_month_rounded,
+                        size: 18,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
                     Text(
                       currentMonthYear,
                       style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],
                 ),
                 Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.chevron_left_rounded),
+                    IconButton.filledTonal(
+                      icon: const Icon(Icons.chevron_left_rounded, size: 20),
                       tooltip: 'Previous week',
                       onPressed: _previousWeek,
                       visualDensity: VisualDensity.compact,
+                      style: IconButton.styleFrom(
+                        backgroundColor: colorScheme.surfaceContainerHigh,
+                        padding: const EdgeInsets.all(6),
+                      ),
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.chevron_right_rounded),
+                    const SizedBox(width: 6),
+                    IconButton.filledTonal(
+                      icon: const Icon(Icons.chevron_right_rounded, size: 20),
                       tooltip: 'Next week',
                       onPressed: _nextWeek,
                       visualDensity: VisualDensity.compact,
+                      style: IconButton.styleFrom(
+                        backgroundColor: colorScheme.surfaceContainerHigh,
+                        padding: const EdgeInsets.all(6),
+                      ),
                     ),
                   ],
                 ),
               ],
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 12),
 
             // Horizontal Days Strip (Monday to Sunday)
             Row(
@@ -395,22 +451,21 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
                 return InkWell(
                   onTap: () => _selectDate(dayDate),
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(16),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     decoration: BoxDecoration(
                       color: isSelected
                           ? colorScheme.primary
                           : (isCurrentRealToday
-                              ? colorScheme.primaryContainer.withValues(alpha: 0.35)
+                              ? AppColors.primaryContainer.withValues(alpha: 0.45)
                               : Colors.transparent),
-                      borderRadius: BorderRadius.circular(14),
+                      borderRadius: BorderRadius.circular(16),
                       border: isCurrentRealToday && !isSelected
                           ? Border.all(
-                              color: colorScheme.primary.withValues(alpha: 0.6),
-                              width: 1.2,
+                              color: colorScheme.primary.withValues(alpha: 0.7),
+                              width: 1.5,
                             )
                           : null,
                     ),
@@ -420,23 +475,25 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                         Text(
                           shortWeekday,
                           style: theme.textTheme.labelSmall?.copyWith(
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                             color: isSelected
                                 ? colorScheme.onPrimary
-                                : colorScheme.onSurfaceVariant,
+                                : (isCurrentRealToday
+                                    ? AppColors.primary
+                                    : colorScheme.onSurfaceVariant),
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        const SizedBox(height: 6),
                         Text(
                           '${dayDate.day}',
                           style: theme.textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w700,
                             color: isSelected
                                 ? colorScheme.onPrimary
                                 : colorScheme.onSurface,
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        const SizedBox(height: 6),
                         // Indicator dot showing care shift coverage
                         Container(
                           width: 5,
@@ -445,7 +502,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                             shape: BoxShape.circle,
                             color: isSelected
                                 ? colorScheme.onPrimary
-                                : colorScheme.primary,
+                                : AppColors.primary,
                           ),
                         ),
                       ],
