@@ -77,15 +77,9 @@
     </tr>
   </table>
 
-  <br />
-
-  <img src="Demo.gif" width="220" height="453" alt="Screen recording in action" /><br />
-  <sub><b>Screen recording in action</b></sub>
-</div>
-
 ---
 
-## 📥 Get Rifq for Android (Direct from GitHub Actions)
+## 📥 Get Rifq for Android
 
 You do not need to set up Flutter or build from source to try Rifq on your Android phone! Every production and CI build is automatically compiled and uploaded as an artifact through **GitHub Actions**.
 
@@ -97,13 +91,13 @@ You do not need to set up Flutter or build from source to try Rifq on your Andro
 4. Click on **`app-release`** to download the ZIP file.
 5. Extract the downloaded ZIP to find `app-release.apk`.
 6. Transfer the APK to your Android device (or download directly using your phone's web browser) and tap to install.
-   > 💡 *If prompted, enable "Install unknown apps" in your Android system settings.*
+   > 💡 If prompted, enable "Install unknown apps" in your Android system settings.
 
 ---
 
 ## 📖 About Rifq
 
-**Rifq** (derived from the Arabic *رِفق*, denoting *gentleness, tender compassion, and benevolent care*) is a Flutter mobile application crafted to address the daily complexities of family caregiving for elderly relatives.
+**Rifq** (derived from the Arabic رِفق, denoting gentleness, tender compassion, and benevolent care) is a Flutter mobile application crafted to address the daily complexities of family caregiving for elderly relatives.
 
 Caring for an aging family member often involves multiple relatives—siblings, grandchildren, and spouses—juggling busy work schedules while managing intricate medication regimens, frequent doctor appointments, and round-the-clock supervision. Communication gaps frequently lead to accidental double-dosing, missed medications, or uncovered shifts.
 
@@ -114,8 +108,8 @@ Caring for an aging family member often involves multiple relatives—siblings, 
 ## ✨ Core Features
 
 ### 🏠 1. Care Overview & Live Activity Feed
-- **Elder Care Status:** Instant visibility of your loved one's condition (e.g., *Abdullah, 78 yrs — Resting well • Stable vitals*).
-- **Active Caregiver Spotlight:** Real-time indicator displaying who is currently on duty (e.g., *Mohammed (Son)*) and when their shift ends.
+- **Elder Care Status:** Instant visibility of your loved one's condition (e.g., Abdullah, 78 yrs — Resting well • Stable vitals).
+- **Active Caregiver Spotlight:** Real-time indicator displaying who is currently on duty (e.g., Mohammed (Son)) and when their shift ends.
 - **Quick Metrics:** High-level daily adherence summary showing completed medications (`4 of 6 Taken • 67%`) and latest vitals (`128/82 mmHg • Blood Sugar: 110 mg/dL`).
 - **Chronological Activity Log:** Live updates detailing daily occurrences—medication intake, blood pressure checks, meals, afternoon walks, and physical therapy sessions.
 
@@ -285,6 +279,5 @@ We warmly welcome community contributions and suggestions!
 ---
 
 <p align="center">
-  <b>Rifq (رِفق) — Gentle care, united family.</b><br />
   Made with ❤️ by the Rifq Team at Tuwaiq Academy.
 </p>
