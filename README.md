@@ -42,26 +42,36 @@
 <div align="center">
   <table>
     <tr>
-      <th align="center">🏠 Home Overview</th>
-      <th align="center">📅 Care Schedule</th>
-      <th align="center">💊 Daily Care Tasks</th>
-      <th align="center">🤖 Sanad AI Assistant</th>
+      <th align="center" width="25%">🏠 Home Overview</th>
+      <th align="center" width="25%">📅 Care Schedule</th>
+      <th align="center" width="25%">💊 Daily Care Tasks</th>
+      <th align="center" width="25%">🤖 Sanad AI Assistant</th>
     </tr>
     <tr>
-      <td align="center" valign="top">
-        <img src="1.png" width="220" alt="Home Overview Screen" /><br/><br/>
+      <td align="center" valign="middle" width="25%">
+        <img src="1.png" width="220" height="453" alt="Home Overview Screen" />
+      </td>
+      <td align="center" valign="middle" width="25%">
+        <img src="2.png" width="220" height="453" alt="Care Schedule Screen" />
+      </td>
+      <td align="center" valign="middle" width="25%">
+        <img src="3.png" width="220" height="453" alt="Daily Care Tasks Screen" />
+      </td>
+      <td align="center" valign="middle" width="25%">
+        <img src="4.png" width="220" height="453" alt="Sanad AI Assistant Screen" />
+      </td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="25%">
         <sub><b>Real-time status, active caregiver, vitals summary & live daily activity feed</b></sub>
       </td>
-      <td align="center" valign="top">
-        <img src="2.png" width="220" alt="Care Schedule Screen" /><br/><br/>
+      <td align="center" valign="top" width="25%">
         <sub><b>Interactive weekly calendar strip, round-the-clock shift roster & swap requests</b></sub>
       </td>
-      <td align="center" valign="top">
-        <img src="3.png" width="220" alt="Daily Care Tasks Screen" /><br/><br/>
+      <td align="center" valign="top" width="25%">
         <sub><b>Prescribed medication doses, doctor appointments & quick task creation</b></sub>
       </td>
-      <td align="center" valign="top">
-        <img src="4.png" width="220" alt="Sanad AI Assistant Screen" /><br/><br/>
+      <td align="center" valign="top" width="25%">
         <sub><b>Context-grounded AI companion answering queries about pills and clinical visits</b></sub>
       </td>
     </tr>
