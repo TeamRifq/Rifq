@@ -76,6 +76,13 @@
       </td>
     </tr>
   </table>
+
+  <br />
+
+  <video src="Demo.mp4" width="220" height="453" controls="controls" muted="muted">
+    Your browser does not support the video tag.
+  </video><br />
+  <sub><b>Screen recording in action</b></sub>
 </div>
 
 ---
