@@ -8,7 +8,7 @@
 
 <p align="center">
   <strong>Compassionate, coordinated caregiving for your elderly loved ones.</strong><br />
-  <em>Empowering families with seamless 24/7 care shifts, medication tracking, and a context-aware AI healthcare companion.</em>
+  Empowering families with seamless 24/7 care shifts, medication tracking, and a context-aware AI healthcare companion.
 </p>
 
 <p align="center">
@@ -76,6 +76,7 @@
       </td>
     </tr>
   </table>
+</div>
 
 ---
 
@@ -86,12 +87,11 @@ You do not need to set up Flutter or build from source to try Rifq on your Andro
 ### How to Download the Android APK:
 
 1. Go to the **[Actions](../../actions)** tab at the top of this GitHub repository.
-2. Select the latest completed workflow run from **[Flutter Publish](../../actions/workflows/publish.yml)** or **[Flutter Build](../../actions/workflows/build.yml)**.
+2. Select the latest completed workflow run from **[Flutter Publish](../../actions/workflows/publish.yml)**.
 3. Scroll down to the **Artifacts** section at the bottom of the workflow summary page.
 4. Click on **`app-release`** to download the ZIP file.
 5. Extract the downloaded ZIP to find `app-release.apk`.
 6. Transfer the APK to your Android device (or download directly using your phone's web browser) and tap to install.
-   > 💡 If prompted, enable "Install unknown apps" in your Android system settings.
 
 ---
 
@@ -99,19 +99,19 @@ You do not need to set up Flutter or build from source to try Rifq on your Andro
 
 **Rifq** (derived from the Arabic رِفق, denoting gentleness, tender compassion, and benevolent care) is a Flutter mobile application crafted to address the daily complexities of family caregiving for elderly relatives.
 
-Caring for an aging family member often involves multiple relatives—siblings, grandchildren, and spouses—juggling busy work schedules while managing intricate medication regimens, frequent doctor appointments, and round-the-clock supervision. Communication gaps frequently lead to accidental double-dosing, missed medications, or uncovered shifts.
+Caring for an aging family member often involves multiple relatives siblings, grandchildren, and spouses juggling busy work schedules while managing intricate medication regimens, frequent doctor appointments, and round-the-clock supervision. Communication gaps frequently lead to accidental double-dosing, missed medications, or uncovered shifts.
 
-**Rifq** transforms this stressful journey into a harmonized, compassionate experience. By providing real-time visibility into who is currently on care duty, structured shift swaps, transparent pill administration logs, and **Sanad (سَنَد)**—an intelligent AI assistant strictly grounded in the elder's medical records—Rifq ensures your loved one receives consistent, loving, and mistake-free care.
+**Rifq** transforms this stressful journey into a harmonized, compassionate experience. By providing real-time visibility into who is currently on care duty, structured shift swaps, transparent pill administration logs, and **Sanad (سَنَد)** an intelligent AI assistant strictly grounded in the elder's medical records Rifq ensures your loved one receives consistent, loving, and mistake-free care.
 
 ---
 
 ## ✨ Core Features
 
 ### 🏠 1. Care Overview & Live Activity Feed
-- **Elder Care Status:** Instant visibility of your loved one's condition (e.g., Abdullah, 78 yrs — Resting well • Stable vitals).
+- **Elder Care Status:** Instant visibility of your loved one's condition (e.g., Abdullah, 78 yrs   Resting well • Stable vitals).
 - **Active Caregiver Spotlight:** Real-time indicator displaying who is currently on duty (e.g., Mohammed (Son)) and when their shift ends.
 - **Quick Metrics:** High-level daily adherence summary showing completed medications (`4 of 6 Taken • 67%`) and latest vitals (`128/82 mmHg • Blood Sugar: 110 mg/dL`).
-- **Chronological Activity Log:** Live updates detailing daily occurrences—medication intake, blood pressure checks, meals, afternoon walks, and physical therapy sessions.
+- **Chronological Activity Log:** Live updates detailing daily occurrences medication intake, blood pressure checks, meals, afternoon walks, and physical therapy sessions.
 
 ### 📅 2. 24/7 Care Schedule & Shift Swapping
 - **Interactive Weekly Calendar:** Day-by-day calendar strip featuring coverage dots for instant visibility of covered and pending days.
